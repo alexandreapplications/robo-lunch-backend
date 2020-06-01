@@ -21,7 +21,9 @@
     "express": "^4.17.1",
     "helmet": "^3.22.0",
     "moment": "^2.25.3",
-    "nocache": "^2.1.0"
+    "nocache": "^2.1.0",
+    "swagger-ui-express": "^4.1.4",
+    "yamljs": "^0.3.0"
   },
   "devDependencies": {
     "nodemon": "^2.0.0"
