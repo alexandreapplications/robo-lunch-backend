@@ -1,0 +1,248 @@
+swagger: "2.0"
+info:
+  description: "This is an application to allow clients to auto request service"
+  version: "1.0.0"
+  title: "Swagger Robo Lunch"
+  termsOfService: "http://swagger.io/terms/"
+  contact:
+    email: "at.sampaio@gmail.com"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "localhost:3000"
+basePath: "/api/v1/"
+tags:
+  - name: "cart"
+    description: "Treat cart information"
+    externalDocs:
+      description: "Find out more"
+      url: "http://swagger.io"
+  #- name: "menuitens"
+  #  description: "Itens to be requested by de user"
+  #- name: "customer"
+  #  description: "Customer users"
+schemes:
+  - "https"
+  - "http"
+paths:
+  /{domain}/cart:
+    get:
+      tags:
+        - "cart"
+      summary: "Get summary"
+      description: "Enlist cart summary"
+      parameters:
+        - name: "domain"
+          in: "path"
+          required: true
+          description: "Domain to work"
+          type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: "#/definitions/cart-sumary"
+    put:
+      tags:
+        - "cart"
+      summary: "Create new cart"
+      description: "Creates an empty cart to new sell"
+      parameters:
+        - name: "domain"
+          in: "path"
+          required: true
+          description: "Domain to work"
+          type: string
+      responses:
+        204:
+          description: "The new Cart"
+          schema:
+            $ref: "#/definitions/cart"
+  /{domain}/cart/getByStatus/{status}:
+    get:
+      tags:
+        - "cart"
+      summary: "Get all open carts"
+      description: "Enlist all carts that are current open"
+      parameters:
+        - name: "domain"
+          in: "path"
+          required: true
+          description: "Domain to work"
+          type: string
+        - name: "status"
+          in: "path"
+          description: "Status to get"
+          required: true
+          type: string
+          enum:
+            - payed
+            - canceled
+            - open
+      responses:
+        200:
+          description: OK
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/cart"
+        404:
+          description: "Not found"
+  /{domain}/cart/{id}:
+    get:
+      tags:
+        - "cart"
+      summary: "Get a single cart"
+      description: "Get cart data"
+      parameters:
+        - name: "domain"
+          in: "path"
+          required: true
+          description: "Domain to work"
+          type: string
+        - name: "id"
+          in: "path"
+          description: "Cart id"
+          required: true
+          type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: "#/definitions/cart"
+        404:
+          description: "Not found"
+  /{domain}/cart/{cartId}/item/{id}:
+    get:
+      tags:
+        - "cart"
+      summary: "Get a cart item"
+      description: "Get an item to a cart"
+      parameters:
+        - name: "domain"
+          in: "path"
+          required: true
+          description: "Domain to work"
+          type: string
+        - name: "cartId"
+          in: "path"
+          description: "Cart id"
+          required: true
+          type: string
+        - name: "id"
+          in: "path"
+          description: "Card item data"
+          required: true
+          type: string
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: "#/definitions/cart-item"
+        404:
+          description: "Not found"
+  /{domain}/cart/{cartId}/item/:
+    put:
+      tags:
+        - "cart"
+      summary: "Add an item"
+      description: "Add an item to a cart"
+      parameters:
+        - name: "domain"
+          in: "path"
+          required: true
+          description: "Domain to work"
+          type: string
+        - name: "cartId"
+          in: "path"
+          description: "Cart id"
+          required: true
+          type: string
+        - in: "body"
+          name: "body"
+          description: "Card item data"
+          required: true
+          schema:
+            type: array
+            items:
+              $ref: "#/definitions/cart-item-add-command"
+      responses:
+        200:
+          description: OK
+          schema:
+            $ref: "#/definitions/cart"
+        404:
+          description: "Not found"
+  #/menu-item:
+  #/customer:
+definitions:
+  cart-sumary:
+    description: "Sumary for all carts"
+    type: object
+    properties:
+      open-carts:
+        type: "integer"
+        format: "int64"
+      today-carts:
+        type: "integer"
+        format: "int64"
+  cart:
+    description: "Cart information"
+    type: "object"
+    properties:
+      id:
+        type: "integer"
+        format: "int64"
+      status:
+        type: string
+        enum:
+          - payed
+          - canceled
+          - open
+      userId:
+        type: string
+      itens:
+        type: "array"
+        items:
+          $ref: "#/definitions/cart-item"
+  cart-item:
+    description: "Cart item information"
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      itemId:
+        type: integer
+        format: int64
+      timestamp:
+        type: integer
+        format: int64
+      price:
+        type: integer
+        format: decimal
+      quantity:
+        type: integer
+        format: decimal
+      status:
+        type: string
+        enum:
+          - requested
+          - delivered
+          - canceled
+  cart-item-add-command:
+    description: "Cart item add command"
+    type: object
+    properties:
+      itemId:
+        type: integer
+        format: int64
+      price:
+        type: integer
+        format: decimal
+      quantity:
+        type: integer
+        format: decimal
+externalDocs:
+  description: "Find out more about Swagger"
+  url: "http://swagger.io"

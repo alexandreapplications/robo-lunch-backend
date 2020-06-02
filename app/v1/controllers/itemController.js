@@ -1,6 +1,6 @@
 const itemService = require("../services/itemService")();
 
-module.exports = () => {
+module.exports = (dependences) => {
   this.getList = async (req, res) => {
     try {
       var response = await itemService.getList();
