@@ -22,7 +22,7 @@ tags:
   #- name: "customer"
   #  description: "Customer users"
 schemes:
-  - "https"
+  #- "https"
   - "http"
 paths:
   /{domain}/cart:
@@ -42,7 +42,7 @@ paths:
           description: OK
           schema:
             $ref: "#/definitions/cart-sumary"
-    put:
+    post:
       tags:
         - "cart"
       summary: "Create new cart"
@@ -54,7 +54,7 @@ paths:
           description: "Domain to work"
           type: string
       responses:
-        204:
+        201:
           description: "The new Cart"
           schema:
             $ref: "#/definitions/cart"
@@ -111,7 +111,7 @@ paths:
           schema:
             $ref: "#/definitions/cart"
         404:
-          description: "Not found"
+          description: "This cart wasn't found"
   /{domain}/cart/{cartId}/item/{id}:
     get:
       tags:
@@ -191,17 +191,25 @@ definitions:
     type: "object"
     properties:
       id:
+        description: "Cart Id"
         type: "integer"
         format: "int64"
       status:
+        description: "Cart status"
         type: string
         enum:
           - payed
           - canceled
           - open
       userId:
+        description: "User Id"
         type: string
-      itens:
+      timestamp:
+        description: "Insertion timestamp"
+        type: string
+        format: "date-time"
+      items:
+        description: "Array de Items"
         type: "array"
         items:
           $ref: "#/definitions/cart-item"
@@ -210,21 +218,27 @@ definitions:
     type: object
     properties:
       id:
+        description: "Cart Item Id"
         type: integer
         format: int64
       itemId:
+        description: "Item Id"
         type: integer
         format: int64
       timestamp:
-        type: integer
-        format: int64
+        description: "Insertion Timestamp"
+        type: string
+        format: "date-time"
       price:
+        description: "Price"
         type: integer
         format: decimal
       quantity:
+        description: "Requested quantity"
         type: integer
         format: decimal
       status:
+        description: "Item status"
         type: string
         enum:
           - requested
