@@ -17,7 +17,6 @@ function validateResponse(response) {
 }
 
 function validateError(error) {
-  debugger;
   return {
     status: error.response.status,
     status_text: error.response.status_text,
