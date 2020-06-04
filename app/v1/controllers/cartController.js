@@ -1,12 +1,11 @@
 module.exports = (dependences) => {
   const controllerUtils = require("../util/controllerUtils");
-  const service = require("../services/cartService")(dependences);
   //const controllerUtils = require("../util/controllerUtils");
   const domain = "default";
 
   this.create = async (req, res) => {
     try {
-      var response = await service.create(domain);
+      var response = await dependences.cartService.create(domain);
       controllerUtils.handleServiceResponse(response, res);
     } catch (error) {
       controllerUtils.handleServiceResponse(error, res);
@@ -15,7 +14,10 @@ module.exports = (dependences) => {
 
   this.getSingle = async (req, res) => {
     try {
-      var response = await service.getSingle(domain, req.params.id);
+      var response = await dependences.cartService.getSingle(
+        domain,
+        req.params.id
+      );
       controllerUtils.handleServiceResponse(response, res);
     } catch (error) {
       controllerUtils.handleServiceResponse(error, res);

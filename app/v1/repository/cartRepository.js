@@ -1,7 +1,7 @@
 const moment = require("moment");
 const axiosUtil = require("../util/apiUtils");
 
-module.exports = (axios) => {
+module.exports = (dependences) => {
   this.insert = (domain) => {
     return new Promise((resolve, reject) => {
       const modelToAdd = {
@@ -11,7 +11,10 @@ module.exports = (axios) => {
         items: [],
       };
       axiosUtil.handleResponse(
-        axios.post(`http://localhost:3001/cart_${domain}`, modelToAdd),
+        dependences.axios.post(
+          `http://localhost:3001/cart_${domain}`,
+          modelToAdd
+        ),
         resolve,
         reject
       );
@@ -21,7 +24,7 @@ module.exports = (axios) => {
   this.getSingle = (domain, id) => {
     return new Promise((resolve, reject) => {
       axiosUtil.handleResponse(
-        axios.get(`http://localhost:3001/cart_${domain}/${id}`),
+        dependences.axios.get(`http://localhost:3001/cart_${domain}/${id}`),
         resolve,
         reject
       );

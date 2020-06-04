@@ -1,11 +1,15 @@
 // https://tsh.io/blog/dependency-injection-in-node-js/
-var axios = require("axios");
 var express = require("express");
 var router = express.Router();
 // Instance dependences
 var dependences = {
-  cartRepository: require("./repository/cartRepository")(axios),
+  axios: require("axios"),
 };
+dependences.cartRepository = require("./repository/cartRepository")(
+  dependences
+);
+dependences.cartService = require("./services/cartService")(dependences);
+
 var cartRouter = require("./routes/cartRouter")(dependences);
 var itemRouter = require("./routes/itemRouter")(dependences);
 
