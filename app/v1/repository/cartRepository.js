@@ -1,20 +1,10 @@
-const moment = require("moment");
 const axiosUtil = require("../util/apiUtils");
 
 module.exports = (dependences) => {
-  this.insert = (domain) => {
+  this.insert = (domain, record) => {
     return new Promise((resolve, reject) => {
-      const modelToAdd = {
-        status: "open",
-        userId: "",
-        timestamp: moment().utc(),
-        items: [],
-      };
       axiosUtil.handleResponse(
-        dependences.axios.post(
-          `http://localhost:3001/cart_${domain}`,
-          modelToAdd
-        ),
+        dependences.axios.post(`http://localhost:3001/cart_${domain}`, record),
         resolve,
         reject
       );

@@ -42,6 +42,8 @@ paths:
           description: OK
           schema:
             $ref: "#/definitions/cart-sumary"
+        400:
+          description: "An internal error has occurred"
     post:
       tags:
         - "cart"
@@ -58,6 +60,8 @@ paths:
           description: "The new Cart"
           schema:
             $ref: "#/definitions/cart"
+        400:
+          description: "An internal error has occurred"
   /{domain}/cart/getByStatus/{status}:
     get:
       tags:
@@ -86,6 +90,8 @@ paths:
             type: "array"
             items:
               $ref: "#/definitions/cart"
+        400:
+          description: "An internal error has occurred"
         404:
           description: "Not found"
   /{domain}/cart/{id}:
@@ -110,6 +116,8 @@ paths:
           description: OK
           schema:
             $ref: "#/definitions/cart"
+        400:
+          description: "An internal error has occurred"
         404:
           description: "This cart wasn't found"
   /{domain}/cart/{cartId}/item/{id}:
@@ -139,6 +147,8 @@ paths:
           description: OK
           schema:
             $ref: "#/definitions/cart-item"
+        400:
+          description: "An internal error has occurred"
         404:
           description: "Not found"
   /{domain}/cart/{cartId}/item/:
@@ -171,6 +181,8 @@ paths:
           description: OK
           schema:
             $ref: "#/definitions/cart"
+        400:
+          description: "An internal error has occurred"
         404:
           description: "Not found"
   #/menu-item:

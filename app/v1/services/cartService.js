@@ -2,7 +2,14 @@ const okRegex = /^2\d\d$/g;
 const moment = require("moment");
 module.exports = (dependences) => {
   this.create = (domain) => {
-    return dependences.cartRepository.insert(domain);
+    const record = {
+      status: "open",
+      userId: "",
+      timestamp: moment().utc(),
+      items: [],
+    };
+
+    return dependences.cartRepository.insert(domain, record);
   };
   this.getSingle = (domain, id) => {
     return dependences.cartRepository.getSingle(domain, id);
