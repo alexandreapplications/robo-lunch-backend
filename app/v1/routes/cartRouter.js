@@ -1,10 +1,10 @@
 module.exports = (dependences) => {
-  const express = require("express");
-  const router = express.Router();
   const controller = require("../controllers/cartController")(dependences);
+  const router = dependences.express.Router();
   router.post("/", controller.create);
   router.get("/:id", controller.getSingle);
-
+  router.get("/getByStatus/:status", controller.getByStatus);
+  router.post("/:id/item", controller.addItem);
   this.get = () => {
     return router;
   };

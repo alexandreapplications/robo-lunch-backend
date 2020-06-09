@@ -21,6 +21,16 @@ module.exports = (dependences) => {
     });
   };
 
+  this.update = (domain, data) => {
+    return new Promise((resolve, reject) => {
+      axiosUtil.handleResponse(
+        dependences.axios.post(`http://localhost:3001/cart_${domain}`, data),
+        resolve,
+        reject
+      );
+    });
+  };
+
   this.getSingle = (domain, id) => {
     return new Promise((resolve, reject) => {
       axiosUtil.handleResponse(
@@ -30,5 +40,18 @@ module.exports = (dependences) => {
       );
     });
   };
+
+  this.getByStatus = (domain, status) => {
+    return new Promise((resolve, reject) => {
+      axiosUtil.handleResponse(
+        dependences.axios.get(
+          `http://localhost:3001/cart_${domain}/?status=${status}`
+        ),
+        resolve,
+        reject
+      );
+    });
+  };
+
   return this;
 };

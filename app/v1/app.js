@@ -4,6 +4,7 @@ var router = express.Router();
 // Instance dependences
 var dependences = {
   axios: require("axios"),
+  express: express,
 };
 dependences.cartRepository = require("./repository/cartRepository")(
   dependences

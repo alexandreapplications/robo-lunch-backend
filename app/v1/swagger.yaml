@@ -142,7 +142,7 @@ paths:
         404:
           description: "Not found"
   /{domain}/cart/{cartId}/item/:
-    put:
+    post:
       tags:
         - "cart"
       summary: "Add an item"

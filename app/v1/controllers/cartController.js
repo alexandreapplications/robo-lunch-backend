@@ -24,5 +24,30 @@ module.exports = (dependences) => {
     }
   };
 
+  this.getByStatus = async (req, res) => {
+    try {
+      var response = await dependences.cartService.getByStatus(
+        domain,
+        req.params.status
+      );
+      controllerUtils.handleServiceResponse(response, res);
+    } catch (error) {
+      controllerUtils.handleServiceResponse(error, res);
+    }
+  };
+
+  this.addItem = async (req, res) => {
+    try {
+      var response = await dependences.cartService.addItem(
+        domain,
+        req.params.id,
+        req.body
+      );
+      controllerUtils.handleServiceResponse(response, res);
+    } catch (error) {
+      controllerUtils.handleServiceResponse(error, res);
+    }
+  };
+
   return this;
 };
