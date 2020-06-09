@@ -16,7 +16,7 @@
     "url": "https://github.com/alexandreapplications/robo-lunch-backend.git"
   },
   "jest": {
-    "coverageDirectory": "/public/coverage",
+    "coverageDirectory": "../coverage/backend",
     "collectCoverage": true,
     "collectCoverageFrom": [
       "**/*.{js,jsx}"
