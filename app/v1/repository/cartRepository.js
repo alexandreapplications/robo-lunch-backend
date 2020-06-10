@@ -11,10 +11,13 @@ module.exports = (dependences) => {
     });
   };
 
-  this.update = (domain, data) => {
+  this.update = (domain, id, data) => {
     return new Promise((resolve, reject) => {
       axiosUtil.handleResponse(
-        dependences.axios.post(`http://localhost:3001/cart_${domain}`, data),
+        dependences.axios.put(
+          `http://localhost:3001/cart_${domain}/${id}`,
+          data
+        ),
         resolve,
         reject
       );

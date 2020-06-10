@@ -120,37 +120,37 @@ paths:
           description: "An internal error has occurred"
         404:
           description: "This cart wasn't found"
-  /{domain}/cart/{cartId}/item/{id}:
-    get:
-      tags:
-        - "cart"
-      summary: "Get a cart item"
-      description: "Get an item to a cart"
-      parameters:
-        - name: "domain"
-          in: "path"
-          required: true
-          description: "Domain to work"
-          type: string
-        - name: "cartId"
-          in: "path"
-          description: "Cart id"
-          required: true
-          type: string
-        - name: "id"
-          in: "path"
-          description: "Card item data"
-          required: true
-          type: string
-      responses:
-        200:
-          description: OK
-          schema:
-            $ref: "#/definitions/cart-item"
-        400:
-          description: "An internal error has occurred"
-        404:
-          description: "Not found"
+  # /{domain}/cart/{cartId}/item/{id}:
+  #   get:
+  #     tags:
+  #       - "cart"
+  #     summary: "Get a cart item"
+  #     description: "Get an item to a cart"
+  #     parameters:
+  #       - name: "domain"
+  #         in: "path"
+  #         required: true
+  #         description: "Domain to work"
+  #         type: string
+  #       - name: "cartId"
+  #         in: "path"
+  #         description: "Cart id"
+  #         required: true
+  #         type: string
+  #       - name: "id"
+  #         in: "path"
+  #         description: "Card item data"
+  #         required: true
+  #         type: string
+  #     responses:
+  #       200:
+  #         description: OK
+  #         schema:
+  #           $ref: "#/definitions/cart-item"
+  #       400:
+  #         description: "An internal error has occurred"
+  #       404:
+  #         description: "Not found"
   /{domain}/cart/{cartId}/item/:
     post:
       tags:

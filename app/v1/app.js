@@ -12,11 +12,9 @@ dependences.cartRepository = require("./repository/cartRepository")(
 dependences.cartService = require("./services/cartService")(dependences);
 
 var cartRouter = require("./routes/cartRouter")(dependences);
-var itemRouter = require("./routes/itemRouter")(dependences);
 
 //
 router.use("/:domain/cart", cartRouter.get());
-router.use("/:domain/item", itemRouter.get());
 
 // Tratamento do Swagger
 const swaggerUi = require("swagger-ui-express");

@@ -34,7 +34,9 @@ module.exports = (dependences) => {
               status: "requested",
             });
           });
-          resolve(record);
+          resolve(
+            await dependences.cartRepository.update(domain, cartId, record.data)
+          );
         }
       } catch (error) {
         reject(error);

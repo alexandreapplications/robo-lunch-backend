@@ -4,7 +4,24 @@
       "status": "open",
       "userId": "",
       "timestamp": "2020-06-03T14:01:39.137Z",
-      "items": [],
+      "items": [
+        {
+          "id": "200610144634657",
+          "itemId": 10,
+          "timeStamp": "2020-06-10T14:46:34.727Z",
+          "price": 5,
+          "quantity": 2,
+          "status": "requested"
+        },
+        {
+          "id": "200610162657427",
+          "itemId": 4,
+          "timeStamp": "2020-06-10T16:26:57.477Z",
+          "price": 7,
+          "quantity": 1,
+          "status": "requested"
+        }
+      ],
       "id": 1
     },
     {
